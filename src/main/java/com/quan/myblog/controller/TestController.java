@@ -1,7 +1,13 @@
 package com.quan.myblog.controller;
 
+import com.quan.myblog.dao.UserDao;
+import com.quan.myblog.pojo.User;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 /**
  * @ClassName: TestController
@@ -12,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class TestController {
+// 页面测试
     @RequestMapping("/article_edit")
     public String test01() {
         return "admin/article_edit";
@@ -47,7 +54,7 @@ public class TestController {
         return "admin/header";
     }
 
-    @RequestMapping("/index")
+    @RequestMapping("/admin/index")
     public String test08() {
         return "admin/index";
     }
@@ -80,5 +87,16 @@ public class TestController {
     @RequestMapping("/setting")
     public String test14() {
         return "admin/setting";
+    }
+
+
+// dao测试
+    @Autowired
+    private UserDao userDao;
+
+    @RequestMapping("/testdao")
+    public void testdao() {
+        List<User> allUsers = userDao.getAllUsers();
+        for (User u : allUsers) System.out.println(u);
     }
 }

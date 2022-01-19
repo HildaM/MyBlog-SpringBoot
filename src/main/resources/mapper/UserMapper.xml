@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quan.myblog.dao.UserDao">
+<!-- 共有sql片段   -->
+    <sql id="TABLES">
+        myblog.b_users
+    </sql>
+
+    <sql id="COLUMNS">
+        uid,username,password,email,homeUrl
+    </sql>
+
+<!--  查询所有用户  -->
+    <select id="getAllUsers" resultType="User">
+        select * from
+        <include refid="TABLES"/>
+    </select>
+
+
+<!-- 根据姓名查找用户  -->
+    <select id="getUserByName" resultType="User">
+        select * from
+        <include refid="TABLES"></include>
+        where username = #{username};
+    </select>
+</mapper>
