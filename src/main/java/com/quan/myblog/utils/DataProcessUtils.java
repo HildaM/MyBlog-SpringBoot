@@ -1,8 +1,12 @@
 package com.quan.myblog.utils;
 
+import com.quan.myblog.contants.WebConst;
+import com.quan.myblog.pojo.User;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -41,6 +45,21 @@ public class DataProcessUtils {
         }
 
         return "";
+    }
+
+
+    /**
+     * @Author Hilda
+     * @Description //TODO 获取Session工具类
+     * @Date 18:01 2022/1/19
+     * @Param []
+     * @returnValue void
+     **/
+    public static User getUserSession(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (null == session) return null;
+        // 获取指定Session下的User对象
+        return (User) session.getAttribute(WebConst.LOGIN_SESSION_KEY);
     }
 
 
