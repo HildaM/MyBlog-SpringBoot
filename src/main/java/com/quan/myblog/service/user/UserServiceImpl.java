@@ -1,9 +1,14 @@
 package com.quan.myblog.service.user;
 
+import com.quan.myblog.contants.ErrorContants;
 import com.quan.myblog.dao.UserDao;
+import com.quan.myblog.exception.BlogException;
 import com.quan.myblog.pojo.User;
+import com.quan.myblog.utils.DataProcessUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 /**
  * @ClassName: UserServiceImpl
@@ -14,20 +19,31 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService{
+    // 日志Logger
+
+
     @Autowired
     private UserDao userDao;
 
-    @Override
-    public User getUserByName(String username) {
-        User user = userDao.getUserByName(username);
-        if (user != null) return user;
-
-        return null;
-    }
 
     // 登录业务
     @Override
     public User login(String username, String password) {
-        return null;
+        // 数据验证
+        if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
+            // 还有非法的空格字符
+            throw new BlogException(ErrorContants.Auth.USERNAME_PASSWORD_IS_EMPTY);
+        }
+
+        // 对密码进行加密处理
+        String pwd = DataProcessUtils.getMD5Code(username + password);
+
+        // 检查是否存在这个用户
+        User user = userDao.getUserByNameAndPwd(username, pwd);
+        if (null == user)
+            throw new BlogException(ErrorContants.Auth.USERNAME_PASSWORD_ERROR);
+
+
+        return user;
     }
 }

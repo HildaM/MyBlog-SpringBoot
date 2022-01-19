@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface UserService {
-    // 根据姓名查询用户
-    public User getUserByName(@Param("username") String username);
 
     // 登录业务
     public User login(@Param("username") String username, @Param("password") String password);

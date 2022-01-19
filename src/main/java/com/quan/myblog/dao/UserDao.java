@@ -20,5 +20,5 @@ public interface UserDao {
     public List<User> getAllUsers();
 
     // 根据姓名查找用户
-    public User getUserByName(@Param("username") String username);
+    public User getUserByNameAndPwd(@Param("username") String username, @Param("password") String password);
 }

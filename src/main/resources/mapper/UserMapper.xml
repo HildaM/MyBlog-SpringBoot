@@ -20,10 +20,10 @@
     </select>
 
 
-<!-- 根据姓名查找用户  -->
-    <select id="getUserByName" resultType="User">
+<!-- 根据姓名密码查找用户  -->
+    <select id="getUserByNameAndPwd" resultType="User">
         select * from
         <include refid="TABLES"></include>
-        where username = #{username};
+        where username = #{username} and password = #{password};
     </select>
 </mapper>
