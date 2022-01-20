@@ -23,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 public class BaseInterceptor implements HandlerInterceptor {
     // 日志类
     private static final Logger LOGGE = LoggerFactory.getLogger(BaseInterceptor.class);
-    // 用户登录设备
-    private static final String USER_AGENT = "user_agent";
+    // 用户登录设备：网络报文中的 user-agent 字段
+    private static final String USER_AGENT = "user-agent";
 
 
 

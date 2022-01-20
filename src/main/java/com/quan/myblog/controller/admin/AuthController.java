@@ -3,7 +3,9 @@ package com.quan.myblog.controller.admin;
 import com.quan.myblog.contants.WebConst;
 import com.quan.myblog.pojo.User;
 import com.quan.myblog.service.user.UserService;
+import com.quan.myblog.utils.DataProcessUtils;
 import com.quan.myblog.utils.Response;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,6 +40,7 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    // 处理get请求
     @GetMapping("/login")
     public String userLoggin() {
         return "admin/login";
@@ -66,6 +69,10 @@ public class AuthController {
             // 添加Session信息
             request.getSession().setAttribute(WebConst.LOGIN_SESSION_KEY, user);
 
+            // 设置‘记住我’功能
+            if (!StringUtils.isBlank(remember_me)) {
+                DataProcessUtils.setCookie(response, user.getUid());
+            }
 
         } catch (Exception e) {
             // 登录失败

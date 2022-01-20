@@ -11,4 +11,7 @@ public class WebConst {
     public static String LOGIN_SESSION_KEY = "login_user";
     public static final String USER_COOKIE = "user_cookie";
 
+    // aes加密盐
+    public static String AES_SALT = "0123456789abcdefHILDAQUAN";
+
 }
