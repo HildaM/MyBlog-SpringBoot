@@ -1,7 +1,9 @@
 package com.quan.myblog.controller.admin;
 
+import com.quan.myblog.contants.LogAction;
 import com.quan.myblog.contants.WebConst;
 import com.quan.myblog.pojo.User;
+import com.quan.myblog.service.log.LogService;
 import com.quan.myblog.service.user.UserService;
 import com.quan.myblog.utils.DataProcessUtils;
 import com.quan.myblog.utils.Response;
@@ -40,6 +42,9 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private LogService logService;
+
     // 处理get请求
     @GetMapping("/login")
     public String userLoggin() {
@@ -73,6 +78,9 @@ public class AuthController {
             if (!StringUtils.isBlank(remember_me)) {
                 DataProcessUtils.setCookie(response, user.getUid());
             }
+
+            // 日志记录
+            logService.addLog(request.getRemoteAddr(), user.getUid(), LogAction.LOGIN.getAction(), null);
 
         } catch (Exception e) {
             // 登录失败

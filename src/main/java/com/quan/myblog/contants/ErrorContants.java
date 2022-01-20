@@ -12,4 +12,10 @@ public interface ErrorContants {
         static final String USERNAME_PASSWORD_ERROR = "用户名不存在或密码错误";
         static final String NOT_LOGIN = "用户未登录";
     }
+
+    interface Common {
+        static final String PARAM_IS_EMPTY = "参数为空";
+        static final String IVALID_PARAM = "无效的参数";
+        static final String CAN_NOT_FIND_PARAM_TO_CONTINUE = "找不到参数继续运行";
+    }
 }

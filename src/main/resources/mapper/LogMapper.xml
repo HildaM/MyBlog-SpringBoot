@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quan.myblog.dao.LogDao">
+<!-- 共有sql片段   -->
+    <sql id="TABLES">
+        myblog.b_logs
+    </sql>
+
+    <sql id="COLUMNS">
+        id,ip,authorId,action,data,created
+    </sql>
+
+<!-- 添加日志 -->
+    <insert id="addLog" parameterType="Log">
+        insert into 
+        <include refid="TABLES"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            ip, authorId, action, data, created,
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            #{ip, jdbcType=VARCHAR}, #{authorId, jdbcType=INTEGER},
+            #{action, jdbcType=VARCHAR}, #{data, jdbcType=VARCHAR}, UNIX_TIMESTAMP(NOW()),
+        </trim>
+        
+    </insert>
+
+<!-- 删除日志   -->
+    <delete id="deleteLog">
+        delete from
+        <include refid="TABLES"/>
+        where id = #{id, jdbcType=INTEGER}
+    </delete>
+
+</mapper>

@@ -16,7 +16,7 @@ import java.util.List;
  * @date: 2022/1/18 15:19
  */
 
-@Controller
+//@Controller
 public class TestController {
 // 页面测试
     @RequestMapping("/article_edit")
