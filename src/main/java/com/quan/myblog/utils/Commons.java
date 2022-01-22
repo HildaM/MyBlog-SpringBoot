@@ -28,5 +28,17 @@ public class Commons {
         
         return "";
     }
+    
+    
+    /**
+     * @Author Hilda
+     * @Description //TODO 处理url，并返回合适的url
+     * @Date 16:05 2022/1/22
+     * @Param [url]
+     * @returnValue java.lang.String
+     **/
+//    public static String site_url(String url) {
+//
+//    }
 
 }

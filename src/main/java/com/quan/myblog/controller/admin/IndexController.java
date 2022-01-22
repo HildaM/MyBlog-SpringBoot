@@ -2,6 +2,7 @@ package com.quan.myblog.controller.admin;
 
 import com.github.pagehelper.PageInfo;
 import com.quan.myblog.pojo.Log;
+import com.quan.myblog.service.content.ContentService;
 import com.quan.myblog.service.log.LogService;
 import com.quan.myblog.utils.Commons;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.quan.myblog.pojo.Contents;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -31,6 +33,9 @@ public class IndexController {
 
     @Autowired
     private LogService logService;
+
+    @Autowired
+    private ContentService contentService;
 
     // 进入首页
     @GetMapping("/index")
@@ -54,6 +59,11 @@ public class IndexController {
         List<Log> logList = logPageInfo.getList();
         // 将日志list返回给前端
         request.setAttribute("logs", logList);
+
+        // 获取所有文章
+        List<Contents> articles = contentService.getAllContents();
+        // 将文章返回到前端
+        request.setAttribute("articles", articles);
 
         LOGGER.info("Exit admin: intoIndex method");
         return "admin/index";

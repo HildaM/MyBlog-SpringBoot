@@ -60,11 +60,11 @@
                                 </div>
                                 <div class="panel-body">
                                     <ul class="list-group">
-                                        <li class="list-group-item" >
+                                        <li class="list-group-item" th:each="article:${articles}">
                             <span class="badge badge-primary"
-                                  ></span>
-                                            <a target="_blank"
-                                               ></a>
+                                th:title="${article.commentsNum} + '条评论'" th:text="${article.commentsNum}"></span>
+                                            <a target="_blank" 
+                                              th:text="${article.title}" ></a>
                                         </li>
                                     </ul>
                                 </div>
