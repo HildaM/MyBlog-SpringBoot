@@ -1,11 +1,15 @@
 package com.quan.myblog.service.log;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.quan.myblog.contants.ErrorContants;
 import com.quan.myblog.dao.LogDao;
 import com.quan.myblog.exception.BlogException;
 import com.quan.myblog.pojo.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @ClassName: LogServiceImpl
@@ -50,5 +54,25 @@ public class LogServiceImpl implements LogService{
         if (null == id)
             throw BlogException.withErrorCode(ErrorContants.Common.PARAM_IS_EMPTY);
         logDao.deleteLog(id);
+    }
+
+
+    /**
+     * @Author Hilda
+     * @Description //TODO 获取所有日志记录
+     * @Date 9:46 2022/1/22
+     * @Param []
+     * @returnValue java.util.List<com.quan.myblog.pojo.Log>
+     **/
+    @Override
+    public PageInfo<Log> getLogs(int pageNums, int pageSize) {
+        // 设置分页
+        PageHelper.startPage(pageNums, pageSize);
+        // 获取日志
+        List<Log> allLogs = logDao.getAllLogs();
+        // 封装
+        PageInfo<Log> logPageInfo = new PageInfo<>(allLogs);
+
+        return logPageInfo;
     }
 }

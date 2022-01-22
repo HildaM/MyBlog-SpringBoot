@@ -3,6 +3,8 @@ package com.quan.myblog.dao;
 import com.quan.myblog.pojo.Log;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 
 /**
  * @ClassName: LogDao
@@ -18,4 +20,7 @@ public interface LogDao {
 
     // 删除日志
     public int deleteLog(Integer id);
+
+    // 获取所有日志
+    public List<Log> getAllLogs();
 }

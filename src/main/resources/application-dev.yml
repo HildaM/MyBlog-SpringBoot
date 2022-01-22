@@ -76,4 +76,11 @@ logging:
         Statement: debug
 
 
+# pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+  returnPageInfo: check
 

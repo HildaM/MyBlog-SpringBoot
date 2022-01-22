@@ -1,6 +1,11 @@
 package com.quan.myblog.service.log;
 
 
+import com.github.pagehelper.PageInfo;
+import com.quan.myblog.pojo.Log;
+
+import java.util.List;
+
 /**
  * @ClassName: LogService
  * @Description: 日志模块业务层
@@ -29,5 +34,15 @@ public interface LogService {
      * @returnValue void
      **/
     public void deleteLog(Integer id);
+    
+    
+    /**
+     * @Author Hilda
+     * @Description //TODO 获取日志记录
+     * @Date 11:05 2022/1/22
+     * @Param [pageNums, pageSize]
+     * @returnValue com.github.pagehelper.PageInfo<com.quan.myblog.pojo.Log>
+     **/
+    public PageInfo<Log> getLogs(int pageNums, int pageSize);
 
 }

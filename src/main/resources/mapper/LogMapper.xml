@@ -34,4 +34,11 @@
         where id = #{id, jdbcType=INTEGER}
     </delete>
 
+<!--  获取所有日志  -->
+    <select id="getAllLogs" resultType="Log">
+        select * from
+        <include refid="TABLES"/>
+        order by id DESC
+    </select>
+
 </mapper>
